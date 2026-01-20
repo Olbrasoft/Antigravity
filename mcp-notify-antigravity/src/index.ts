@@ -20,10 +20,13 @@ server.tool(
     try {
       const endpoint = process.env.VA_ENDPOINT || 'http://localhost:5055/api/notifications';
       
-      const body = { 
-          text, 
+      const body = {
+          text,
           source: 'antigravity',
-          issueIds: issueIds || []
+          issueIds: issueIds || [],
+          // LLM tracking - Antigravity uses Gemini Flash
+          providerName: 'google',
+          modelName: 'gemini-2.0-flash-001'
       };
 
       const response = await fetch(endpoint, {
